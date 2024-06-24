@@ -27,17 +27,20 @@ Fade Animations
 
 export function fadeInAnimation(item) {
   gsap.set(item, { opacity: 1 });
-  let target = item;
-  let tl = gsap.timeline({ paused: true });
+  item.each(function (index) {
+    let target = $(this);
+    let tl = gsap.timeline({ paused: true });
 
-  createScrollTrigger(target, tl);
+    createScrollTrigger(target, tl);
 
-  tl.from(target, {
-    delay: 0.25,
-    opacity: 0,
-    duration: 0.75,
-    stagger: { amount: 0.75 },
-    ease: "power4.out",
+    tl.from(target, {
+      delay: 0.25,
+      yPercent: 5,
+      autoAlpha: 0,
+      duration: 0.75,
+      // stagger: { amount: 0.75 },
+      ease: "sine.out",
+    });
   });
 }
 
@@ -55,11 +58,11 @@ export function lettersFadeInAnimation(textItem) {
     createScrollTrigger(target, tl);
 
     tl.from(targetWord, {
-      filter: "blur(3px)",
-      opacity: 0,
+      filter: "blur(2px)",
+      autoAlpha: 0,
       duration: 0.75,
       yPercent: 30,
-      stagger: 0.06,
+      stagger: { amount: 0.75 },
       ease: "sine.out",
     });
   });
@@ -164,7 +167,32 @@ Blur Animations
 
 */
 
-export function lettersBlurInAnimation(textItem) {
+export function heroHeaderAnimation(textItem) {
+  gsap.set(textItem, { opacity: 1 });
+  createSplitText(textItem, { types: "words, chars, lines" });
+
+  textItem.each(function (index) {
+    let target = $(this);
+    let targetChar = target.find(".char");
+
+    let tl = gsap.timeline({ paused: true });
+    createScrollTrigger(target, tl);
+
+    tl.from(targetChar, {
+      // filter: "blur(4px)",
+      color: "#d18d78",
+      autoAlpha: 0,
+      scale: 0.8,
+      yPercent: 25,
+      transformOrigin: "left top",
+      duration: 1,
+      stagger: { amount: 0.75, from: "left" },
+      ease: "sine.out",
+    });
+  });
+}
+
+export function sectionHeaderAnimation(textItem) {
   gsap.set(textItem, { opacity: 1 });
   createSplitText(textItem, { types: "words, chars" });
 
@@ -179,10 +207,8 @@ export function lettersBlurInAnimation(textItem) {
       // filter: "blur(4px)",
       color: "#d18d78",
       autoAlpha: 0,
-      scale: 0.9,
-      transformOrigin: "center bottom",
-      duration: 0.85,
-      stagger: { each: 0.015, from: "random" },
+      duration: 1,
+      stagger: { amount: 0.75, from: "left" },
       ease: "sine.out",
     });
   });
@@ -210,28 +236,28 @@ export function quotesAnimation(textItem) {
   });
 }
 
-export function heroHeadingAnimation(textItem) {
-  gsap.set(textItem, { opacity: 1 });
-  createSplitText(textItem, { types: "words, chars" });
+// export function heroHeadingAnimation(textItem) {
+//   gsap.set(textItem, { opacity: 1 });
+//   createSplitText(textItem, { types: "words, chars" });
 
-  textItem.each(function (index) {
-    let target = $(this);
-    let targetChar = target.find(".char");
+//   textItem.each(function (index) {
+//     let target = $(this);
+//     let targetChar = target.find(".char");
 
-    let tl = gsap.timeline({ paused: true });
-    createScrollTrigger(target, tl);
+//     let tl = gsap.timeline({ paused: true });
+//     createScrollTrigger(target, tl);
 
-    tl.from(targetChar, {
-      // filter: "blur(4px)",
-      autoAlpha: 0,
-      scale: 0.8,
-      transformOrigin: "bottom center",
-      duration: 1,
-      stagger: { amount: 1, from: "left" },
-      ease: "sine.out",
-    });
-  });
-}
+//     tl.from(targetChar, {
+//       // filter: "blur(4px)",
+//       autoAlpha: 0,
+//       scale: 0.8,
+//       transformOrigin: "bottom center",
+//       duration: 1,
+//       stagger: { amount: 1, from: "left" },
+//       ease: "sine.out",
+//     });
+//   });
+// }
 export function linesBlurInAnimation(textItem) {
   createSplitText(textItem, { types: "words, lines" });
   textItem.each(function (index) {

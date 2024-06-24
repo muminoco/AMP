@@ -6,7 +6,7 @@ export function smoothScroll() {
     wrapper: ".page-wrapper",
     content: ".main-wrapper",
     smooth: 1,
-    smoothTouch: 0.3,
+    // smoothTouch: 0.3,
     // normalizeScroll: true,
     effects: true,
   });
