@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const topicsItem = $(".chapter-list-item");
 
     imagesScrollInAnimation($(".image_component"));
+    imagesScrollInAnimation($(".podcast-gallery_item"));
     timelineScrollInAnimation(timelineItem);
     quickStagger(tagItem);
     quickStagger(topicsItem);
@@ -86,9 +87,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   function runCustomAnimations() {
     // Pin Two Panel
+    /*
     let twoPanelComponent = ".two-panel_component";
     let twoPanelPinned = ".two-panel_pinned";
     let twoPanelContent = ".two-panel_content";
+    let twoPanelEnd = "bottom center";
+    */
+    let twoPanelComponent = ".podcast-gallery_two-panel-component";
+    let twoPanelPinned = ".podcast-gallery_pinned";
+    let twoPanelContent = ".podcast-gallery_two-panel-content";
     let twoPanelEnd = "bottom center";
 
     if (
