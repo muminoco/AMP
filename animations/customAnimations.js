@@ -42,20 +42,22 @@ export function createHorizontalScroller(
   // let mobileLandscapeBreakpoint = "(max-width: 767px)";
   // let mobilePortraitBreakpoint = "(max-width: 478px)";
 
-  gsap.to(horizontalTrigger, {
-    x: () =>
-      -(
-        document.querySelector(horizontalContent).offsetWidth -
-        window.innerWidth
-      ),
-    ease: "none",
-    scrollTrigger: {
-      trigger: horizontalTrigger,
-      pin: horizontalPin,
-      anticipatePin: true,
-      scrub: true,
-      markers: isMarkersOn,
-      end: () => "+=" + document.querySelector(horizontalContent).offsetWidth,
-    },
+  mm.add(desktopBreakpoint, () => {
+    gsap.to(horizontalTrigger, {
+      x: () =>
+        -(
+          document.querySelector(horizontalContent).offsetWidth -
+          window.innerWidth
+        ),
+      ease: "none",
+      scrollTrigger: {
+        trigger: horizontalTrigger,
+        pin: horizontalPin,
+        anticipatePin: true,
+        scrub: true,
+        markers: isMarkersOn,
+        end: () => "+=" + document.querySelector(horizontalContent).offsetWidth,
+      },
+    });
   });
 }

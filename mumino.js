@@ -9,7 +9,6 @@ import {
   heroHeaderAnimation,
   lettersFadeInAnimation,
   linesMaskUpAnimation,
-  quotesAnimation,
   sectionHeaderAnimation,
 } from "./animations/textAnimations.js";
 import {
@@ -21,9 +20,7 @@ import {
 document.addEventListener("DOMContentLoaded", (event) => {
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-  /**
-   * Theme Switching Functionality
-   */
+  // Theme Switching Functionality
 
   function themeSwitcher() {
     // Retrives the current theme based on what's stored in localStorage.
@@ -58,8 +55,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const heroHeading = $("[ani='hero-heading']");
     const sectionHeading = $("[ani='section-heading']");
     const specialParagraph = $("[ani='special-paragraph']");
-    const normalParagraph = $("[ani='paragraph']");
-    // const normalParagraph = document.querySelectorAll("[ani='paragraph']");
+    const normalParagraph = $("[ani='paragraph'], .explore_rich-text p");
     const highlightBlock = $(".highlight-block_text");
 
     heroHeaderAnimation(heroHeading);
@@ -69,8 +65,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     lettersFadeInAnimation(highlightBlock);
     sectionHeaderAnimation(sectionHeading);
-
-    // quotesAnimation($("[ani='quote']"));
   }
 
   function staggerAnimations() {
@@ -87,12 +81,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   function runCustomAnimations() {
     // Pin Two Panel
-    /*
-    let twoPanelComponent = ".two-panel_component";
-    let twoPanelPinned = ".two-panel_pinned";
-    let twoPanelContent = ".two-panel_content";
-    let twoPanelEnd = "bottom center";
-    */
     let twoPanelComponent = ".podcast-gallery_two-panel-component";
     let twoPanelPinned = ".podcast-gallery_pinned";
     let twoPanelContent = ".podcast-gallery_two-panel-content";
@@ -129,7 +117,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   }
 
-  // Runs the smooth scrolling functionality
   smoothScroll();
   themeSwitcher();
   runCustomAnimations();
