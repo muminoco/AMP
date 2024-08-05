@@ -1,21 +1,8 @@
 import { smoothScroll } from "./animations/smoothScroll.js";
-import {
-  createHorizontalScroller,
-  pinTwoPanel,
-} from "./animations/customAnimations.js";
+import { createHorizontalScroller, pinTwoPanel } from "./animations/customAnimations.js";
 import { setupThemeToggler } from "./themes/themeSwitcher.js";
-import {
-  fadeInAnimation,
-  heroHeaderAnimation,
-  lettersFadeInAnimation,
-  linesMaskUpAnimation,
-  sectionHeaderAnimation,
-} from "./animations/textAnimations.js";
-import {
-  imagesScrollInAnimation,
-  quickStagger,
-  timelineScrollInAnimation,
-} from "./animations/staggerAnimations.js";
+import { fadeInAnimation, heroHeaderAnimation, lettersFadeInAnimation, linesMaskUpAnimation, sectionHeaderAnimation } from "./animations/textAnimations.js";
+import { imagesScrollInAnimation, quickStagger, timelineScrollInAnimation } from "./animations/staggerAnimations.js";
 
 document.addEventListener("DOMContentLoaded", (event) => {
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -26,8 +13,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     // Retrives the current theme based on what's stored in localStorage.
     // If nothing's there, it defaults to "light"
     const currentTheme = localStorage.getItem("theme") || "light";
-    document.getElementById(`mm-theme-switcher-${currentTheme}`).style.display =
-      "flex";
+    document.getElementById(`mm-theme-switcher-${currentTheme}`).style.display = "flex";
     document.body.setAttribute("mm-theme", currentTheme);
 
     // Setup the toggle button event listener
@@ -69,7 +55,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   function staggerAnimations() {
     const timelineItem = $(".timeline_item-component");
-    const tagItem = $(".tag_item");
+    const tagItem = $(".tag_item, .social-share_item");
     const topicsItem = $(".chapter-list-item");
 
     imagesScrollInAnimation($(".image_component"));
@@ -86,15 +72,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
     let twoPanelContent = ".podcast-gallery_two-panel-content";
     let twoPanelEnd = "bottom center";
 
-    if (
-      areElementsPresent([twoPanelComponent, twoPanelPinned, twoPanelContent])
-    ) {
-      pinTwoPanel(
-        twoPanelComponent,
-        twoPanelPinned,
-        twoPanelContent,
-        twoPanelEnd
-      );
+    if (areElementsPresent([twoPanelComponent, twoPanelPinned, twoPanelContent])) {
+      pinTwoPanel(twoPanelComponent, twoPanelPinned, twoPanelContent, twoPanelEnd);
     }
 
     // Horizontal Scroller
@@ -102,18 +81,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
     let horizontalScrollerViewport = ".horizontal-scroller_viewport";
     let horizontalScrollerTrack = ".horizontal-scroller_track";
 
-    if (
-      areElementsPresent([
-        horizontalScrollerSection,
-        horizontalScrollerViewport,
-        horizontalScrollerTrack,
-      ])
-    ) {
-      createHorizontalScroller(
-        horizontalScrollerSection,
-        horizontalScrollerViewport,
-        horizontalScrollerTrack
-      );
+    if (areElementsPresent([horizontalScrollerSection, horizontalScrollerViewport, horizontalScrollerTrack])) {
+      createHorizontalScroller(horizontalScrollerSection, horizontalScrollerViewport, horizontalScrollerTrack);
     }
   }
 
