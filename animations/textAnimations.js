@@ -6,24 +6,8 @@ Takes the text target (such as a heading),
 and the types of split text (lines, words, chars).
 */
 let createSplitText = function (textItem, splitTypes) {
-  let newSplitText = new SplitType(textItem, splitTypes);
-
-  //   let newSplitText = new SplitType(textItem, splitTypes);
+  return new SplitType(textItem, splitTypes);
 };
-
-/*
-Text Animations
-1). Split the text
-2). Loop through them
-3). Create a scroll trigger for the target
-4). Do the animation
-*/
-
-/* 
-
-Fade Animations 
-
-*/
 
 export function fadeInAnimation(item) {
   gsap.set(item, { opacity: 1 });

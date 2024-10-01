@@ -1,12 +1,7 @@
 const isMarkersOn = false;
 
 // Two Panel, Side by Side
-export function pinTwoPanel(
-  targetStartTrigger,
-  pinnedContent,
-  targetEndTrigger,
-  endString
-) {
+export function pinTwoPanel(targetStartTrigger, pinnedContent, targetEndTrigger, endString) {
   let mm = gsap.matchMedia();
   // let desktopBreakpoint = "(min-width: 992px)";
   let desktopBreakpoint = "(min-width: 768px)";
@@ -30,33 +25,25 @@ export function pinTwoPanel(
 }
 
 // Horizontal Scroller
-export function createHorizontalScroller(
-  horizontalTrigger,
-  horizontalPin,
-  horizontalContent
-) {
+export function createHorizontalScroller(horizontalTrigger, horizontalPin, horizontalContent) {
   let mm = gsap.matchMedia();
-  // let desktopBreakpoint = "(min-width: 992px)";
   let desktopBreakpoint = "(min-width: 768px)";
   let mobileBreakpoint = "(max-width: 767px)";
-  // let mobileLandscapeBreakpoint = "(max-width: 767px)";
-  // let mobilePortraitBreakpoint = "(max-width: 478px)";
 
   mm.add(desktopBreakpoint, () => {
+    // Dynamically calculate the width
+    let calculateContentWidth = () => document.querySelector(horizontalContent).offsetWidth;
+
     gsap.to(horizontalTrigger, {
-      x: () =>
-        -(
-          document.querySelector(horizontalContent).offsetWidth -
-          window.innerWidth
-        ),
+      x: () => -(calculateContentWidth() - window.innerWidth),
       ease: "none",
       scrollTrigger: {
         trigger: horizontalTrigger,
         pin: horizontalPin,
-        anticipatePin: true,
         scrub: true,
         markers: isMarkersOn,
-        end: () => "+=" + document.querySelector(horizontalContent).offsetWidth,
+        end: () => "+=" + calculateContentWidth(),
+        invalidateOnRefresh: true,
       },
     });
   });
